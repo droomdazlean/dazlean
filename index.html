@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Droom Dazlean Solutions - Premier Software Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            /* Dark Blue */
+            --secondary: #0074D9;
+            /* Light Blue */
+            --accent: #FF4136;
+            /* Red Accent */
+            --background: #F6F6F6;
+            /* Light Background */
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            min-height: 100vh;
+            font-size: 0.9rem;
+            /* Slightly smaller font size */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            /* Reduced padding */
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            /* Smaller border radius */
+            padding: 1rem;
+            /* Reduced padding */
+            margin: 1rem 0;
+            /* Reduced margin */
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: zoomIn 0.6s ease;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* Adjusted minmax value */
+            gap: 1rem;
+            /* Reduced gap */
+            margin: 1rem 0;
+            /* Reduced margin */
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            /* Reduced padding */
+            border-radius: 8px;
+            /* Smaller border radius */
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            /* Reduced hover effect */
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .icon {
+            font-size: 2rem;
+            /* Reduced icon size */
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            /* Reduced margin */
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1rem;
+            /* Reduced bottom spacing */
+            right: 1rem;
+            /* Reduced right spacing */
+            background: #25D366;
+            color: white;
+            padding: 0.8rem;
+            /* Reduced padding */
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+            z-index: 1000;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            /* Reduced padding */
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            /* Smaller border radius */
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            /* Adjusted minmax value */
+            gap: 1rem;
+            /* Reduced gap */
+            margin-top: 2rem;
+            /* Reduced margin */
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            /* Reduced padding */
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            /* Smaller border radius */
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: white;
+            margin-bottom: 0.3rem;
+            /* Reduced margin */
+            text-shadow: 0.5px 0.5px #000;
+            font-size: 1.5rem;
+            /* Adjusted font size */
+        }
+
+        p,
+        li {
+            font-size: 0.85rem;
+            /* Reduced font size */
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="visible" style="text-align:center; margin-top:.5rem;">
+            <h1><i class="fas fa-rocket icon"></i><br>Droom Dazlean Solutions</h1>
+            <p>Transforming Businesses Through Digital Innovation</p>
+        </header>
+
+        <!-- Core Services -->
+        <section class="visible" id="services">
+            <h2><i class="fas fa-laptop-code icon"></i> Our Software Solutions</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-brain icon"></i>
+                    <h3>AI/ML Solutions</h3>
+                    <p>Custom machine learning models, predictive analytics, NLP solutions, and computer vision
+                        systems.</p>
+                    <ul>
+                        <li>Chatbot Development</li>
+                        <li>Process Automation</li>
+                        <li>Data Mining Solutions</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-globe icon"></i>
+                    <h3>Web Development</h3>
+                    <p>Full-stack development with modern frameworks for dynamic web applications.</p>
+                    <ul>
+                        <li>E-commerce Platforms</li>
+                        <li>CRM Systems</li>
+                        <li>Progressive Web Apps</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt icon"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Cross-platform mobile solutions tailored to your business needs.</p>
+                    <ul>
+                        <li>Android/iOS Apps</li>
+                        <li>IoT Integration</li>
+                        <li>Enterprise Mobility Solutions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERP & Enterprise Solutions -->
+        <section id="erp" class="visible">
+            <h2><i class="fas fa-chart-line icon"></i> ERP & Enterprise Solutions</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-warehouse icon"></i>
+                    <h3>Inventory Management</h3>
+                    <p>Real-time tracking with AI forecasting for efficient inventory control.</p>
+                    <ul>
+                        <li>Automated Replenishment Systems</li>
+                        <li>Supplier Management Tools</li>
+                        <li>Barcode Integration and Scanning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-users-cog icon"></i>
+                    <h3>HR Management Suite</h3>
+                    <p>A comprehensive suite for managing your workforce effectively.</p>
+                    <ul>
+                        <li>Payroll Automation and Compliance</li>
+                        <li>Performance Analytics and Reporting</li>
+                        <li>Recruitment and Onboarding Systems</li>
+                    </ul>
+                </div>
+
+                <!-- Additional ERP Services -->
+                <div class="service-card">
+                    <i class="fas fa-file-invoice-dollar icon"></i>
+                    <h3>Financial Management</h3>
+                    <p>Streamlined financial processes for better cash flow management.</p>
+                    <ul>
+                        <li>Billing and Invoicing Systems</li>
+                        <li>Expense Tracking and Reporting</li>
+                        <li>Budgeting Tools and Forecasting</li>
+                    </ul>
+                </div>
+
+                <!-- Additional ERP Services -->
+                <div class="service-card">
+                    <i class="fas fa-cogs icon"></i><br />
+                    <h3>Project Management Tools</h3><br />
+                    Manage projects efficiently with our tailored solutions.
+                    <ul><br />
+                        <li>Task Assignment and Tracking<br /></li><br />
+                        <li>Status Updates and Notifications<br /></li><br />
+                        <li>Bottleneck Analysis and Reporting<br /></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Consultancy & IT Services -->
+        <section id="consultancy" class="visible">
+            <h2><i class="fas fa-headset icon"></i> Consultancy & IT Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-cloud-upload-alt icon"></i>
+                    <h3>Cloud Solutions</h3>
+                    <p>We offer secure and scalable cloud services tailored to your business needs.</p>
+                    <ul>
+                        <li>Cloud Migration Services</li>
+                        <li>Hybrid Cloud Solutions</li>
+                        <li>Disaster Recovery Planning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-shield-alt icon"></i>
+                    <h3>Cybersecurity Services</h3>
+                    <p>Protect your business from cyber threats with our comprehensive security solutions.</p>
+                    <ul>
+                        <li>Network Security Management</li>
+                        <li>Data Encryption and Protection</li>
+                        <li>Compliance Audits and Risk Assessments</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools icon"></i>
+                    <h3>IT Infrastructure Setup</h3>
+                    <p>Build a robust IT infrastructure to support your business operations.</p>
+                    <ul>
+                        <li>Server Installation and Configuration</li>
+                        <li>Network Design and Implementation</li>
+                        <li>Hardware Procurement and Setup</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-comments icon"></i>
+                    <h3>IT Consultancy Services</h3>
+                    <p>Expert guidance to help you make informed technology decisions.</p>
+                    <ul>
+                        <li>Digital Transformation Strategies</li>
+                        <li>Technology Roadmap Development</li>
+                        <li>Process Optimization and Automation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-code icon"></i>
+                    <h3>Custom Software Development</h3>
+                    <p>Create bespoke software solutions tailored to your unique requirements.</p>
+                    <ul>
+                        <li>Enterprise Applications</li>
+                        <li>SaaS Platforms Development</li>
+                        <li>API Integration and Development</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-database icon"></i>
+                    <h3>Data Analytics & Business Intelligence</h3>
+                    <p>Harness the power of data to make smarter business decisions.</p>
+                    <ul>
+                        <li>Data Warehousing Solutions</li>
+                        <li>Business Intelligence Dashboards</li>
+                        <li>Predictive Analytics Models</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trust & Credibility Section -->
+        <section id="trust" class="visible">
+            <h2><i class="fas fa-shield-check icon"></i> Why Choose Us?</h2>
+            <p>Droom Dazlean Solutions is committed to delivering high-quality services with a focus on customer
+                satisfaction, innovation, and long-term partnerships.</p>
+
+            <!-- Trust Statistics -->
+            <div class="stats-grid">
+                <!-- Years of Experience -->
+                <div class="stat-item">
+                    <i class="fas fa-calendar-alt icon"></i>
+                    <h3>12+ Years Experience</h3>
+                    <p>A proven track record in software development.</p>
+                </div>
+
+                <!-- Projects Delivered -->
+                <div class="stat-item">
+                    <i class="fas fa-project-diagram icon"></i>
+                    <h3>850+ Projects Delivered</h3>
+                    <p>Successfully completed projects across various industries.</p>
+                </div>
+
+                <!-- Global Clients -->
+                <div class="stat-item">
+                    <i class="fas fa-globe icon"></i>
+                    <h3>Global Clients Served</h3>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="visible">
+     <!-- References And Contact Section -->
+        <div style="background: linear-gradient(to bottom , skyblue, darkblue); color: white; padding: 20px; text-align: center;">
+            <h1 style="font-size: 20px;">References<br><span style="font-size: 10px"> And Contacts</span> </h1>
+        </div>
+
+
+        <div style="padding:20px;line-height:1.8;background:white;color:black;">
+            <p>References from respected professionals in the artificial intelligence field are available upon request. These individuals can provide insights into our creative abilities, attention to detail, and commitment to delivering high-quality services.</p>
+
+            <h1 style="font-size:18px"><strong>📞 Our Contact Information</strong></h1>
+
+            <ul><li>You can 
+                <a href="http://wa.me/263787702386?text=Hi%2C%20Anold%20Madzore." target="_blank" style="color:#007bff;text-decoration:none;"><strong> WHATSAPP HERE </strong></a> to contact Mr. A Madzore directly on WhatsApp.
+            </li>
+            <li>You can use the following numbers to contact Mr. A Madzore directly:
+                <strong>
+                    <ul>
+                        <li><a href="tel:+263787702386" style="color:#007bff">+263 78 770 2386</a></li>
+                        <li><a href="tel:+263778785354" style="color:#007bff">+263 77 878 5354</a></li>
+                        <li><a href="tel:+263719172868" style="color:#007bff">+263 71 917 2868</a></li>
+                    </ul>
+                </strong>
+            </li>
+            <li><a href="https://www.facebook.com/profile.php?id=100072514418478" target="_blank" style="color:#007bff;text-decoration:none;"><strong>FACEBOOK HERE</strong></a> to check Mr. A Madzore's Facebook profile.
+            </li>
+            <li>You can contact Mr. A Madzore directly on personal email at 
+                <a href="mailto:MrMadzore8@gmail.com" style="color:#007bff;text-decoration:none;"><strong>MrMadzore8@gmail.com</strong></a>.
+            </li>
+            </ul>
+
+            <h2><i class="fas fa-envelope icon"></i> Our Physical Address</h2>
+            <div class="contact-info">
+                <p>Ready to take your business to the next level? Contact us today for a free consultation!</p>
+                <p><i class="fas fa-phone"></i> Phone: +263 78 770 2386</p>
+                <p><i class="fas fa-envelope"></i> Email: droomdazlean@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Address: Number 28150, Unit L, Chitungwiza</p>
+            </div></div>
+        </section>
+        <!-- WhatsApp Button -->
+        <a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</body>
+
+</html>
