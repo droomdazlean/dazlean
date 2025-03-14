@@ -30,15 +30,38 @@
             }
         }
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            min-height: 100vh;
-            font-size: 0.9rem;
-            /* Slightly smaller font size */
-        }
+      body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* This keeps the image fixed */
+    background-position: center center; /* Corrected positioning */
+    color: white;
+    min-height: 100vh;
+    font-size: 0.9rem;
+}
+.working-hours {
+    background-color: #f0f0f0; color:darkblue;margin:50px;/* Light gray background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.working-hours h3 {
+    margin-top: 0;color:darkblue;
+}
+
+.working-hours ul {
+    list-style: none;
+    padding: 0;
+}
+
+.working-hours li {
+    margin-bottom: 10px;
+}
 
         .container {
             max-width: 1200px;
@@ -48,7 +71,7 @@
         }
 
         section {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 10px;
             /* Smaller border radius */
             padding: 1rem;
@@ -64,7 +87,7 @@
         .visible {
             opacity: 1;
             transform: translateY(0);
-            animation: zoomIn 0.6s ease;
+            animation: zoomIn 5s ease;
         }
 
         .service-grid {
@@ -78,8 +101,8 @@
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 1rem;
+            background: rgba(0,0,0, 0.3);
+            padding: 1rem;color:white;
             /* Reduced padding */
             border-radius: 8px;
             /* Smaller border radius */
@@ -185,6 +208,7 @@
 </head>
 
 <body>
+<div style="background:rgba(0,0,0,0.6);color:white">
     <div class="container">
         <header class="visible" style="text-align:center; margin-top:.5rem;">
             <h1><i class="fas fa-rocket icon"></i><br>Droom Dazlean Solutions</h1>
@@ -395,7 +419,7 @@
         <div style="padding:20px;line-height:1.8;background:white;color:black;">
             <p>References from respected professionals in the artificial intelligence field are available upon request. These individuals can provide insights into our creative abilities, attention to detail, and commitment to delivering high-quality services.</p>
 
-            <h1 style="font-size:18px"><strong>📞 Our Contact Information</strong></h1>
+            <h1 style="font-size:18px;color:darkblue;background:white;"><strong>📞 Our Contact Information</strong></h1>
 
             <ul><li>You can 
                 <a href="http://wa.me/263787702386?text=Hi%2C%20Anold%20Madzore." target="_blank" style="color:#007bff;text-decoration:none;"><strong> WHATSAPP HERE </strong></a> to contact Mr. A Madzore directly on WhatsApp.
@@ -416,7 +440,17 @@
             </li>
             </ul>
 
-            <h2><i class="fas fa-envelope icon"></i> Our Physical Address</h2>
+</div></div>
+<div class="working-hours">
+    <h3>Working Hours</h3>
+    <ul>
+        <li>Monday to Friday: 8:00 AM - 4:30 PM</li>
+        <li>Saturday: Closed</li>
+        <li>Sunday: 8:00 AM - 2:00 PM</li>
+    </ul>
+</div>
+
+            <h2 style="color:darkblue;background:white;"><i class="fas fa-envelope icon"></i> Our Physical Address</h2>
             <div class="contact-info">
                 <p>Ready to take your business to the next level? Contact us today for a free consultation!</p>
                 <p><i class="fas fa-phone"></i> Phone: +263 78 770 2386</p>
@@ -426,7 +460,8 @@
         </section>
         <!-- WhatsApp Button -->
         <a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-    </div>
+
+
 </body>
 
 </html>
