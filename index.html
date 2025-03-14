@@ -6,6 +6,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Droom Dazlean Solutions - Premier Software Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* General page styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Overlay styling */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none; /* Hidden by default */
+      z-index: 10; /* Above other elements */
+    }
+
+    .overlay[data-bs-visible="true"] {
+      display: block; /* Show overlay when visible */
+    }
+
+    /* Popup form styling */
+    .popup-form {
+      position: fixed;
+      top: 20px; /* Position at the top with some margin */
+      left: 50%;
+      transform: translateX(-50%) scale(0); /* Start with scale(0) for zoom effect */
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0; /* Start invisible */
+      z-index: 11; /* Above the overlay */
+      backdrop-filter: blur(0px); /* Ensure form is not blurred */
+    }
+
+    .popup-form.show {
+      animation: zoomIn 1s forwards; /* Zoom in animation when showing */
+    }
+
+    .popup-form.show.rotate {
+      animation: zoomInRotate 1s forwards;
+    }
+
+    .popup-form.show.slideLeft {
+      animation: zoomInSlideLeft 1s forwards;
+    }
+
+    .popup-form.show.slideRight {
+      animation: zoomInSlideRight 1s forwards;
+    }
+
+    .popup-form.show.openBook {
+      animation: zoomInOpenBook 1s forwards;
+    }
+
+    .popup-form.show.curtain {
+      animation: zoomInCurtain 1s forwards;
+    }
+
+    .popup-form.show.fold {
+      animation: zoomInFold 1s forwards;
+    }
+
+    .popup-form.show.flip {
+      animation: zoomInFlip 1s forwards;
+    }
+
+    .popup-form.hiding {
+      animation: zoomOut 1s forwards; /* Zoom out animation when closing */
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: translateX(-50%) scale(0); /* Start small */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1); /* End full size */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInRotate {
+      from {
+        transform: translateX(-50%) scale(0) rotate(360deg); /* Start small and rotated */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1) rotate(0deg); /* End full size and no rotation */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInSlideLeft {
+      from {
+        transform: translateX(-100%) scale(1); /* Start off-screen left */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1); /* End centered */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInSlideRight {
+      from {
+        transform: translateX(100%) scale(1); /* Start off-screen right */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1); /* End centered */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInOpenBook {
+      from {
+        transform: translateX(-50%) scale(0) rotateY(90deg); /* Start small and rotated like a book */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1) rotateY(0deg); /* End full size and no rotation */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInCurtain {
+      from {
+        transform: translateX(-50%) scale(1) rotateX(90deg); /* Start off-screen like a curtain */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1) rotateX(0deg); /* End centered */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInFold {
+      from {
+        transform: translateX(-50%) scale(0) rotateZ(45deg); /* Start small and rotated like a fold */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1) rotateZ(0deg); /* End full size and no rotation */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomInFlip {
+      from {
+        transform: translateX(-50%) scale(0) rotateX(180deg); /* Start small and flipped */
+        opacity: 0; /* Invisible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(1) rotateX(0deg); /* End full size and no rotation */
+        opacity: 1; /* Fully visible at end */
+      }
+    }
+
+    @keyframes zoomOut {
+      from {
+        transform: translateX(-50%) scale(1); /* Start full size */
+        opacity: 1; /* Fully visible at start */
+      }
+      to {
+        transform: translateX(-50%) scale(0); /* End small */
+        opacity: 0; /* Invisible at end */
+      }
+    }
+
+    .popup-form h2 {
+      margin-top: 0;color:darkblue;
+    }
+
+.popup-form p{color:darkblue;}
+
+    .popup-form input[type="text"],
+    .popup-form input[type="email"],
+    .popup-form input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .popup-form button {
+      width: calc(50% - 5px);
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .close-btn {
+      background-color:darkblue;color:white;cursor:pointer;
+    }
+    
+    .close-btn:hover{
+        opacity:.4
+     }
+
+     /* Disable interaction with the rest of the page except popup and overlay */
+     body[data-bs-overlay-active="true"] * {
+       pointer-events: none; /* Disable clicks on everything */
+     }
+
+     body[data-bs-overlay-active="true"] .overlay,
+     body[data-bs-overlay-active="true"] .popup-form,
+     body[data-bs-overlay-active="true"] .popup-form * {
+       pointer-events: auto; /* Allow interaction with overlay and popup form only */
+     }
+     
+     body[data-bs-overlay-active="true"] a,
+     body[data-bs-overlay-active="true"] button:not(.close-btn) {
+       pointer-events:none
+     }
+  </style>
     <style>
         :root {
             --primary: #001f3f;
@@ -119,16 +356,32 @@
         .icon {
             font-size: 2rem;
             /* Reduced icon size */
-            color: var(--secondary);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 0.5rem;
             /* Reduced margin */
         }
 
-        .whatsapp-float {
+        .menu-float {
+            position: fixed;
+            top: 1rem;
+            /* Reduced bottom spacing */
+            right: 1rem;
+            /* Reduced right spacing */
+            background: rgba(255,255,255,0.7);
+            color: darkblue;
+            padding: 0.8rem;
+            /* Reduced padding */
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            animation: pulse 5s infinite;
+            z-index: 1000;
+        }
+       .whatsapp-float {
             position: fixed;
             bottom: 1rem;
             /* Reduced bottom spacing */
-            right: 1rem;
+          left: 1rem;
             /* Reduced right spacing */
             background: #25D366;
             color: white;
@@ -208,7 +461,22 @@
 </head>
 
 <body>
-<div style="background:rgba(0,0,0,0.6);color:white">
+
+<!-- Overlay and popup form -->
+<div class="overlay" id="overlay">
+  <div class="popup-form" id="popupForm">
+<div style="text-align:center">
+<img src="dd.jpg" style="width:50px;height:50px;" />
+</div>
+    <h2 style="color:darkblue;">DROOM DAZLEAN SOLUTIONS</h2>
+   <p style="text-align:center;">Download Your Quotation</p>
+    <input type="text" id="quoteNumber"  placeholder="Enter quote number" required>
+
+    <button class="close-btn" onclick="closePopup();quoteUs();">Download Quotation</button>
+  </div>
+</div>
+
+<div style="background: linear-gradient(to right, rgba(0,0,0,0.2), darkblue, rgba(0,0,0,0.4));color:white">
     <div class="container">
         <header class="visible" style="text-align:center; margin-top:.5rem;">
             <h1><i class="fas fa-rocket icon"></i><br>Droom Dazlean Solutions</h1>
@@ -419,7 +687,7 @@
         <div style="padding:20px;line-height:1.8;background:white;color:black;">
             <p>References from respected professionals in the artificial intelligence field are available upon request. These individuals can provide insights into our creative abilities, attention to detail, and commitment to delivering high-quality services.</p>
 
-            <h1 style="font-size:18px;color:darkblue;background:white;"><strong>📞 Our Contact Information</strong></h1>
+            <h1 style="font-size:20px;color:darkblue;background:white;text-align:left;"><strong>📞 Our Contact Information</strong></h1>
 
             <ul><li>You can 
                 <a href="http://wa.me/263787702386?text=Hi%2C%20Anold%20Madzore." target="_blank" style="color:#007bff;text-decoration:none;"><strong> WHATSAPP HERE </strong></a> to contact Mr. A Madzore directly on WhatsApp.
@@ -459,8 +727,86 @@
             </div></div>
         </section>
         <!-- WhatsApp Button -->
-        <a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+        <a  data-bs-target="#overlay" onclick="openPopup()" class="menu-float" style='text-decoration:none;text-align:center;'><i class="fas fa-bars"></i><br>MENU</a>
+   <!-- WhatsApp Button -->
+        <a href="https://wa.me/263787702386?text=Good day, I am interested in your services." class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
+
+<script>
+  function openPopup() {
+    document.body.dataset.bsOverlayActive = 'true';
+    document.getElementById('overlay').dataset.bsVisible = 'true';
+    
+    const popupForm = document.getElementById('popupForm');
+    popupForm.classList.add('show');
+    
+    // Remove any previous animation classes
+    popupForm.classList.remove('rotate', 'slideLeft', 'slideRight', 'openBook', 'curtain', 'fold', 'flip');
+    
+    // Randomly select an animation
+    const animations = ['rotate', 'slideLeft', 'slideRight', 'openBook', 'curtain', 'fold', 'flip'];
+    const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+    popupForm.classList.add(randomAnimation);
+  }
+
+  function closePopup() {
+    const popupForm = document.getElementById('popupForm');
+    popupForm.classList.remove('show', 'rotate', 'slideLeft', 'slideRight', 'openBook', 'curtain', 'fold', 'flip'); // Remove show and other animation classes
+    popupForm.classList.add('hiding'); // Add hiding class for zoom out animation
+    
+    // Wait for the animation to finish before hiding the overlay and form
+    setTimeout(() => {
+      document.body.dataset.bsOverlayActive = 'false';
+      document.getElementById('overlay').dataset.bsVisible = 'false';
+      popupForm.classList.remove('hiding'); // Remove hiding class after animation
+    }, 1000); // Wait for 1 second, matching the animation duration
+  };
+function quoteUs() {
+    try {
+        const quoteNumber = document.getElementById('quoteNumber').value;
+
+        if (!quoteNumber) {
+            throw new Error('Please enter a valid quote number.');
+        }
+
+        alert("Downloading quote number " + quoteNumber);
+
+        fetch('/downloadQuotation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quoteNumber: quoteNumber })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data.success) {
+                throw new Error(data.message);
+            }
+
+            // Start downloading the file
+            const url = data.url;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Quotation_${quoteNumber}.pdf`;
+            a.click();
+        })
+        .catch(error => {
+            alert(`An error occurred: ${error.message}`);
+            console.error('Error:', error);
+        });
+    } catch (error) {
+        alert(`An error occurred: ${error.message}`);
+        console.error('Error:', error);
+    }
+}
+
+</script>
 
 </body>
 
