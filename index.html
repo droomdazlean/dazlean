@@ -466,13 +466,14 @@
 <div class="overlay" id="overlay">
   <div class="popup-form" id="popupForm">
 <div style="text-align:center">
-<img src="DD.jpg" style="width:50px;height:50px;" />
+<img src="dd.jpg" style="width:50px;height:50px;" />
 </div>
     <h2 style="color:darkblue;">DROOM DAZLEAN SOLUTIONS</h2>
    <p style="text-align:center;">Download Your Quotation</p>
     <input type="text" id="quoteNumber"  placeholder="Enter quote number" required>
-
     <button class="close-btn" onclick="closePopup();quoteUs();">Download Quotation</button>
+   <button class="close-btn" onclick="closePopup();" style="color:white;background:red;">Close Menu</button>
+
   </div>
 </div>
 
@@ -763,48 +764,29 @@
   };
 function quoteUs() {
     try {
-        const quoteNumber = document.getElementById('quoteNumber').value;
+        const quoteNumber = document.getElementById('quoteNumber').value.toLowerCase();
 
         if (!quoteNumber) {
             throw new Error('Please enter a valid quote number.');
         }
 
-        alert("Downloading quote number " + quoteNumber);
+        // Check if the file exists (this is not directly possible with client-side JavaScript)
+        // However, you can try to create a blob and see if it fails
+        const fileName = `Quotation_${quoteNumber}.pdf`;
+        const url = fileName;
 
-        fetch('/downloadQuotation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ quoteNumber: quoteNumber })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (!data.success) {
-                throw new Error(data.message);
-            }
+        // Attempt to download the file
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
 
-            // Start downloading the file
-            const url = data.url;
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Quotation_${quoteNumber}.pdf`;
-            a.click();
-        })
-        .catch(error => {
-            alert(`An error occurred: ${error.message}`);
-            console.error('Error:', error);
-        });
+        a.click();
     } catch (error) {
-        alert(`An error occurred: ${error.message}`);
+        alert(`An error 01 occurred: ${error.message}`);
         console.error('Error:', error);
     }
 }
+
 
 </script>
 
