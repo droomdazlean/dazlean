@@ -38,7 +38,7 @@ function quoteUs() {
       document.getElementById('quoteNumber').value="cohvant";
 
         const a = document.createElement('a');
-        a.href = quoteNumber + "/index.html";
+        a.href = "ClientProducts/" + quoteNumber + "/index.html";
        
         a.click();
     } catch (error) {
