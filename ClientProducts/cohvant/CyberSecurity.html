@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Monitoring System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            Background-color: #f4f4f9;
+            color: #333;
+            overflow-x: hidden;
+            Background-image: url('Background1.jpg');
+            Background-size: cover;
+            Background-blend-mode: multiply;
+        }
+
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            Background-color: #007BFF;
+            color: white;
+            padding: 1.5em 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            Background-image: url('Background.jpg');
+            Background-size: cover;
+            Background-blend-mode: multiply;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1.2em;
+        }
+
+        /* Menu Button Styles */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            Background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            animation-name: pulse-animation;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        .menu-button.hidden {
+            display: none;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Aside Menu Styles */
+        .aside-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            Background-color: #343A40;
+            color: white;
+            padding-top: 2em;
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .aside-menu a {
+            display: block;
+            padding: 1em;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #555;
+            transition: Background-color 0.3s ease;
+        }
+
+        .aside-menu a:hover {
+            Background-color: #555;
+        }
+
+        .aside-menu.open {
+            left: 0;
+        }
+
+        /* Content Styles */
+        .content {
+            padding: 2em;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        .content.open {
+            margin-left: 250px;
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        /* Collapsible Card Styles */
+        .card {
+            margin-bottom: 1em;
+            Background-image: url('Background.jpg');
+            Background-size: cover;
+            Background-blend-mode: multiply;
+            padding: 0;
+        }
+
+        .card-header {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 1em;
+            Background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .card-content {
+            display: none;
+            padding: 1em;
+            Background-color: #fff;
+            border-radius: 0 0 5px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .card-content.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.7em 1.5em;
+            Background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: Background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            Background-color: #0056b3;
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            padding: 1em 0;
+            Background-color: #343A40;
+            color: white;
+            Background-image: url('Background.jpg');
+            Background-size: cover;
+            Background-blend-mode: multiply;
+        }
+
+        /* Floating Button Styles */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            Background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            width: auto;
+            height: auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            animation-name: pulse-animation;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 1em;
+            }
+
+            .section {
+                margin-bottom: 1.5em;
+            }
+        }
+
+        /* Additional Styling for Enhanced UI */
+        .data-type {
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .threat-example {
+            font-style: italic;
+            color: #dc3545;
+        }
+
+        .feature-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        /* Services Section Styling */
+        #services .service-card {
+            Background-color: #fff;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin-bottom: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #services .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        #services .service-card h3 {
+            color: #007BFF;
+            margin-bottom: 0.5em;
+        }
+
+        /* Team Section Styling */
+        #team .team-member {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        #team .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Cyber Security Monitoring System</h1>
+        <p>AI-Powered Threat Detection and Prevention</p>
+    </header>
+
+    <button class="menu-button" onclick="toggleMenu()">
+        <i class="bi bi-menu"></i> MENU
+    </button>
+
+    <aside class="aside-menu">
+        <br><br><br>
+        <span style='margin:10px;text-align:center'><strong>CYBER SECURITY MONITORING</strong></span>
+        <i class='bi bi-shield-lock'></i>
+        <a href="#about" onclick="closeMenu()"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#threats" onclick="closeMenu()"><i class="fas fa-exclamation-triangle"></i> Threats Monitored</a>
+        <a href="#features" onclick="closeMenu()"><i class="fas fa-cogs"></i> Features</a>
+        <a href="#implementation" onclick="closeMenu()"><i class="fas fa-tools"></i> Implementation</a>
+        <a href="#videoDemo" onclick="closeMenu()"><i class="fas fa-video"></i> Video Demo</a>
+        <a href="#download" onclick="closeMenu()"><i class="fas fa-download"></i> Download & Review</a>
+        <a href="#contact" onclick="closeMenu()"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#services" onclick="closeMenu()"><i class="fas fa-handshake"></i> Services</a>
+        <a href="#team" onclick="closeMenu()"><i class="fas fa-users"></i> Our Team</a>
+        <p style="margin: 10px; text-align: center;">
+            <strong>Developed by:</strong><br>
+            Nicolate Chidodo (UZ) - BSc in Cyber Security<br>
+            +263 784139445<br><br>
+            Anold Madzore (UZ) - BSc Hons Computer Science<br>
+            +263 713011185
+        </p>
+        <p style="margin: 10px; text-align: center;">
+            <strong>Connected Through:</strong><br>
+            University of Zimbabwe (UZ)
+        </p>
+    </aside>
+
+    <main class="content">
+        <section id="about" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">About the System</div>
+                <div class="card-content">
+                    <p>
+                        The Cyber Security Monitoring System is an AI-driven solution designed to protect your digital
+                        assets from a wide range of cyber threats. Developed by Nicolate Chidodo and Anold Madzore
+                        from the University of Zimbabwe (UZ), this system uses advanced machine learning algorithms to
+                        monitor network traffic, system logs, and user behavior in real-time, providing early detection
+                        and prevention of potential security breaches.
+                    </p>
+                    <p>
+                        Our readily available system is designed for global implementation, offering robust security
+                        support to businesses and individuals worldwide.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="threats" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">Threats Monitored</div>
+                <div class="card-content">
+                    <p>
+                        Our system is designed to monitor and protect against a variety of cyber threats, leveraging
+                        AI to identify patterns and anomalies indicative of malicious activity. Here are some examples:
+                    </p>
+                    <ul>
+                        <li>
+                            <span class="data-type">Malware:</span>
+                            Detection of malicious software attempting to infiltrate the system.
+                            <span class="threat-example">Example: A user downloads a file infected with a Trojan.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">Phishing:</span>
+                            Identification of fraudulent emails or websites attempting to steal sensitive information.
+                            <span class="threat-example">Example: An employee receives a phishing email requesting
+                                login credentials.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">DDoS Attacks:</span>
+                            Mitigation of Distributed Denial of Service attacks that flood the network with traffic.
+                            <span class="threat-example">Example: A server becomes unresponsive due to overwhelming
+                                traffic from multiple sources.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">Insider Threats:</span>
+                            Detection of malicious activities originating from within the organization.
+                            <span class="threat-example">Example: An employee attempts to access unauthorized data.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">Ransomware:</span>
+                            Prevention and detection of ransomware attacks that encrypt critical files.
+                            <span class="threat-example">Example: A system is infected with ransomware, demanding
+                                payment for file decryption.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">SQL Injection:</span>
+                            Identification of SQL injection attempts to compromise database security.
+                            <span class="threat-example">Example: An attacker injects malicious SQL code into a web
+                                application's input field.</span>
+                        </li>
+                        <li>
+                            <span class="data-type">Cross-Site Scripting (XSS):</span>
+                            Detection and prevention of XSS attacks that inject malicious scripts into websites.
+                            <span class="threat-example">Example: An attacker injects a malicious script into a forum
+                                post, which is then executed by other users' browsers.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">Key Features</div>
+                <div class="card-content">
+                    <p>
+                        Our Cyber Security Monitoring System is packed with features designed to provide comprehensive
+                        protection:
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Real-Time Monitoring:</strong> Continuous monitoring of network traffic, system logs,
+                            and user behavior.
+                        </li>
+                        <li>
+                            <strong>AI-Driven Threat Detection:</strong> Advanced machine learning algorithms identify
+                            anomalies and potential threats.
+                        </li>
+                        <li>
+                            <strong>Automated Incident Response:</strong> Automated actions to mitigate threats as soon as
+                            they are detected.
+                        </li>
+                        <li>
+                            <strong>Customizable Alerts:</strong> Configure alerts to notify security personnel of
+                            suspicious activity.
+                        </li>
+                        <li>
+                            <strong>Comprehensive Reporting:</strong> Detailed reports on security incidents and overall
+                            system health.
+                        </li>
+                        <li>
+                            <strong>User Behavior Analytics:</strong> Monitor and analyze user activities to detect
+                            insider threats.
+                        </li>
+                        <li>
+                            <strong>Vulnerability Scanning:</strong> Identify and assess vulnerabilities in systems and
+                            applications.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="implementation" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">Implementation and Technologies</div>
+                <div class="card-content">
+                    <p>
+                        The system is built using state-of-the-art technologies to ensure high accuracy and efficiency.
+                        Key components include:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Machine Learning Algorithms:</strong> Employs advanced algorithms for data analysis and
+                            threat prediction.
+                        </li>
+                        <li>
+                            <strong>User-Friendly Interface:</strong> Features an intuitive interface for easy data input
+                            and result interpretation.
+                        </li>
+                        <li>
+                            <strong>Secure Data Handling:</strong> Ensures the privacy and security of user data through
+                            encryption and secure storage.
+                        </li>
+                    </ul>
+                    <p>
+                        This system can be readily implemented in any organization or made available for individual use,
+                        providing accessible and reliable security support.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="videoDemo" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">Video Demo</div>
+                <div class="card-content">
+                    <p>
+                        Watch the system in action. The video provides a demonstration of the system's capabilities,
+                        including threat detection, automated response, and user interface.
+                    </p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen
+                            title="System Demo Video"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="section">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">Download and Review</div>
+                <div class="card-content">
+                    <p>
+                        We encourage you to download and review our system. By assessing it firsthand, you can verify its
+                        functionality and suitability for your security needs.
+                    </p>
+                    <p>
+                        Organizations are welcome to adopt and implement this system. We welcome feedback and
+                        contributions to improve the system further.
+                    </p>
+                    <p>
+                        To download the application and system backend for assessment or enhancement, please use the
+                        following link:
+                    </p>
+                    <a href="https://drive.google.com/drive/folders/14QYroy9XEW6QvekBhTGcs_xPYmS5sDUQ?usp=sharing"
+                        class="btn" target="_blank">Download & Review the System</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <p>For any inquiries, please reach out to us through the following channels:</p>
+            <ul>
+                <li><strong>Nicolate Chidodo (UZ):</strong> +263 784139445</li>
+                <li><strong>Anold Madzore (UZ):</strong> +263 713011185</li>
+            </ul>
+        </section>
+
+        <section id="services" class="section">
+            <h2><i class="fas fa-handshake"></i> Our Services</h2>
+            <p>We offer a range of services to help you protect your digital assets:</p>
+            <div class="service-card">
+                <h3>Custom System Development</h3>
+                <p>We can develop custom cyber security monitoring systems tailored to your specific needs.</p>
+            </div>
+            <div class="service-card">
+                <h3>Implementation and Integration</h3>
+                <p>We provide seamless implementation and integration of our system into your existing infrastructure.</p>
+            </div>
+            <div class="service-card">
+                <h3>Training and Support</h3>
+                <p>We offer comprehensive training and ongoing support to ensure you get the most out of our system.</p>
+            </div>
+        </section>
+
+        <section id="team" class="section">
+            <h2><i class="fas fa-users"></i> Our Team</h2>
+            <div class="team-member">
+                <img src="nicolate_chidodo.jpg" alt="Nicolate Chidodo">
+                <h3>Nicolate Chidodo</h3>
+                <p>Cyber Security Expert</p>
+            </div>
+            <div class="team-member">
+                <img src="anold_madzore.jpg" alt="Anold Madzore">
+                <h3>Anold Madzore</h3>
+                <p>AI and Machine Learning Specialist</p>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Cyber%20Security%20Monitoring%20System."
+        class="floating-btn">BOOK OUR SERVICES</a>
+
+    <footer class="footer">
+        <p>&copy; 2025 Cyber Security Monitoring System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const asideMenu = document.querySelector('.aside-menu');
+            const content = document.querySelector('.content');
+            const menuButton = document.querySelector('.menu-button');
+
+            asideMenu.classList.toggle('open');
+            content.classList.toggle('open');
+            menuButton.classList.add('hidden');
+        }
+
+        function closeMenu() {
+            const asideMenu = document.querySelector('.aside-menu');
+            const content = document.querySelector('.content');
+            const menuButton = document.querySelector('.menu-button');
+
+            asideMenu.classList.remove('open');
+            content.classList.remove('open');
+            menuButton.classList.remove('hidden');
+        }
+
+        function toggleCard(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('visible');
+        }
+    </script>
+<script src="https://www.drv.tw/inc/wd.js?s=108zef54ozeloz8imp8f8q"></script></body>
+
+</html>

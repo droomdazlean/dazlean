@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohvant Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            Background-color: #f4f4f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            Background-color: #007BFF;
+            color: white;
+            padding: 2em 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            Background-image: url('Background.jpg');
+            Background-size: cover;
+            Background-blend-mode: multiply;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1.2em;
+        }
+
+        /* Menu Button Styles */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            Background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            animation-name: pulse-animation;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Content Styles */
+        .content {
+            padding: 2em;
+            transition: margin-left 0.5s;
+        }
+
+        .content.open {
+            margin-left: 250px;
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        /* Card Styles */
+        .card {
+            Background-color: #00203FFF;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2em;
+            color: white;
+            padding: 1em;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        .card-body {
+            padding: 1em;
+        }
+
+        .card-body h3 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            Background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            padding: 1em 0;
+            Background-color: #343A40;
+            color: white;
+            Background-image: url('Background.jpg');
+            Background-size: cover;
+        }
+
+        /* Floating Button Styles */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            Background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            width: auto;
+            height: auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            animation-name: pulse-animation;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Aside Menu Styles */
+        .aside-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            Background-color: #003049;
+            overflow-x: hidden;
+            transition: left 0.5s;
+            z-index: 999;
+            padding: 20px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .aside-menu.open {
+            left: 0;
+        }
+
+        .aside-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .aside-menu li {
+            padding: 10px 0;
+            border-bottom: 1px solid #6699CC;
+        }
+
+        .aside-menu a {
+            color: #ADEFD1FF;
+            text-decoration: none;
+            display: block;
+        }
+
+        .aside-menu a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 1em;
+            }
+
+            .section {
+                margin-bottom: 1.5em;
+            }
+
+            .content.open {
+                margin-left: 0;
+            }
+
+            .aside-menu {
+                width: 100%;
+                left: -100%;
+            }
+
+            .aside-menu.open {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Cohvant Software Solutions</h1>
+        <p>Developing Innovative Solutions for a Better Tomorrow</p>
+        <p>Have an idea? We bring it to life!</p>
+    </header>
+
+    <button class="menu-button" onclick="toggleMenu()">Our Services</button>
+
+    <aside class="aside-menu">
+        <br><br><br>
+        <span style='margin:10px;text-align:center'><strong>COHVANT SOFTWARE SOLUTIONS</strong></span>
+        <i class='bi bi-code'></i>
+        <p style="margin: 10px; text-align: center;">
+            <strong>Need a Custom Solution?</strong>
+        </p>
+        <ul>
+            <li><a href="hhttps://108zef54ozeloz8imp8f8q.on.drv.tw/Students/CYBER%20THREATS%20MONITORING/HOST/">Cyber
+                    Threats Monitoring</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Intelligent%20Water%20Rationing%20System.">Intelligent
+                    Water Rationing</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20MOHCC%20Therapy%20Link%20System.">MOHCC
+                    Therapy Link</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20STI_EXPERT_SYSTEM.">STI Expert
+                    System</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20AI_FRAUD_DETECTION.">AI Fraud
+                    Detection</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Vehicle%20Imports%20Duty%20Ease.">Vehicle
+                    Imports Duty Ease</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Zvinoreva%20Bus%20Reservation%20System.">Zvinoreva
+                    Bus Reservation</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20SAGE_LOCATOR_ROBOT.">Sage Locator
+                    Robot</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20PROCUSPHERE%20SYSTEM.">Procusphere
+                    System</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20E-SAGE-REGISTRATION-SYSTEM.">E-Sage
+                    Registration</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Digital%20Mall%20System.">Digital Mall
+                    System</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20Data%20Cleaning%20services.">Data
+                    Cleaning</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Biometric%20Employee%20Attendance%20System.">Biometric
+                    Employee Attendance</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20the%20Cemetery%20Sites%20Administration%20Suite.">Cemetery
+                    Sites Administration</a></li>
+            <li><a href="https://wa.me/263787702386?text=Hi%2C%20I%20have%20an%20idea%20for%20a%20system%20and%20would%20like%20to%20discuss%20it.">Have
+                    an Idea? Let's Talk!</a></li>
+        </ul>
+        <p style="margin: 10px; text-align: center;">
+            <strong>Join Our Group:</strong><br>
+            <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" target="_blank">WhatsApp Group</a>
+        </p>
+    </aside>
+
+    <main class="content">
+        <section id="about" class="section">
+            <h2><i class="fas fa-info-circle"></i> About Us</h2>
+            <p>We are dedicated to developing innovative and high-quality software solutions for various business
+                needs. Our expertise lies in creating AI-powered systems that solve real-world problems.</p>
+        </section>
+<section id="collaboration" class="section">
+    <div class="card">
+        <h3 class="card-body">Collaborate with Us</h3>
+        <p class="card-body">
+            Do you have an innovative idea? Let's work together to bring it to life! Send us a message today to discuss how we can help you achieve your vision.
+        </p>
+        <p class="card-body">
+            Are you a business owner looking for custom software solutions or a professional website? Contact us to explore how we can help you grow your business.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20collaborating%20on%20a%20project%20or%20need%20custom%20software%20solutions."
+            class="btn">Send Us a Message</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join Our Group</a>
+        <p class="card-body">
+            Check out our portfolio of developed software solutions and source codes to see how we can help you achieve your goals.
+        </p>
+        <a href="#" class="btn">Explore Our Projects</a>
+    </div>
+</section>
+
+     
+
+        <section id="stiSystem" class="section">
+            <div class="card">
+                <h3 class="card-body">STI Expert System - <strong>[ WITH FREE DOWNLOAD SOURCE CODE ]</strong></h3>
+                <p class="card-body">
+                    An AI-driven diagnostic tool for predicting Sexually Transmitted Infections (STIs).
+                </p>
+                <p class="card-body">
+                    <strong>Objectives:</strong> Improve diagnostic accuracy, provide early intervention.
+                </p>
+                <a href="STIPrediction.html" class="btn">Go</a>
+                <a href="STIPrediction.html"
+                    class="btn">Download Project Source Code</a>
+                <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+            </div>
+        </section>
+
+        <section id="garbageDetection" class="section">
+            <div class="card">
+                <h3 class="card-body">AI-Powered Garbage Detection and Reporting System - <strong>[ WITH FREE DOWNLOAD SOURCE CODE ]</strong></h3>
+                <p class="card-body">
+                    An AI-powered system for detecting and reporting garbage in public areas.
+                </p>
+                <p class="card-body">
+                    <strong>Objectives:</strong> Enhance public cleanliness, reduce waste management costs.
+                </p>
+                <a href="GarbageDetection.html" class="btn">Go</a>
+                <a href="GarbageDetection.html"
+                    class="btn">Download Project Source Code</a>
+            </div>
+        </section>
+
+        <section id="cyberThreatSystem" class="section">
+            <div class="card">
+                <h3 class="card-body">Cyber Threat Monitoring System - <strong>[ WITH FREE DOWNLOAD SOURCE CODE ]</strong></h3>
+                <p class="card-body">
+                    Real-time AI-driven system to detect and prevent cyber threats. Uses machine learning for anomaly
+                    detection.
+                </p>
+                <p class="card-body">
+                    <strong>Objectives:</strong> Enhance security posture, reduce incident response time.
+                </p>
+                <a href="CyberSecurity.html"
+                    class="btn">More Info</a>
+                <a href="CyberSecurity.html"
+                    class="btn">Download Project Source Code</a>
+                <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+            </div>
+        </section>
+
+        <section id="intelligentWaterRationing" class="section">
+            <div class="card">
+                <h3 class="card-body">Intelligent Water Rationing System</h3>
+                <p class="card-body">
+                    AI-based system to optimize water distribution and rationing using predictive analysis.
+                </p>
+                <p class="card-body">
+                    <strong>Objectives:</strong> Reduce water wastage, ensure equitable distribution.
+                </p>
+                <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Intelligent%20Water%20Rationing%20System."
+                    class="btn">More Info</a>
+                <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Intelligent%20Water%20Rationing%20System%20source%20code."
+                    class="btn">Download Project Source Code</a>
+                <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+            </div>
+        </section>
+
+        <section id="mohccTherapyLink" class="section">
+    <div class="card">
+        <h3 class="card-body">MOHCC Therapy Link System</h3>
+        <p class="card-body">
+            AI-powered platform connecting patients with therapists and healthcare providers. Uses natural language processing for initial assessments.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Improve access to therapy, streamline healthcare services.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20MOHCC%20Therapy%20Link%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20MOHCC%20Therapy%20Link%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="aiFraudDetection" class="section">
+    <div class="card">
+        <h3 class="card-body">AI Fraud Detection</h3>
+        <p class="card-body">
+            An AI-powered system for detecting fraudulent activities using pattern recognition.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Minimize financial loss, protect customer assets.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20AI%20Fraud%20Detection%20system."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20AI%20Fraud%20Detection%20system%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="vehicleImportsDutyEase" class="section">
+    <div class="card">
+        <h3 class="card-body">Vehicle Imports Duty Ease</h3>
+        <p class="card-body">
+            AI system to streamline vehicle import duty calculations and processes.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Simplify import procedures, reduce processing time.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Vehicle%20Imports%20Duty%20Ease%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Vehicle%20Imports%20Duty%20Ease%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="zvinorevaBusReservationSystem" class="section">
+    <div class="card">
+        <h3 class="card-body">Zvinoreva Bus Reservation System</h3>
+        <p class="card-body">
+            AI-enhanced bus reservation system with real-time tracking and automated ticketing.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Improve booking convenience, optimize bus routes.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Zvinoreva%20Bus%20Reservation%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Zvinoreva%20Bus%20Reservation%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="sageLocatorRobot" class="section">
+    <div class="card">
+        <h3 class="card-body">Sage Locator Robot</h3>
+        <p class="card-body">
+            AI-driven robot for locating and managing sage plants in agricultural settings.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Increase efficiency in harvesting, reduce labor costs.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Sage%20Locator%20Robot."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Sage%20Locator%20Robot%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="procusphereSystem" class="section">
+    <div class="card">
+        <h3 class="card-body">Procusphere System</h3>
+        <p class="card-body">
+            AI-based procurement system for optimizing supply chain management.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Improve procurement efficiency, reduce costs.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Procusphere%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Procusphere%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="eSageRegistrationSystem" class="section">
+    <div class="card">
+        <h3 class="card-body">E-Sage Registration System</h3>
+        <p class="card-body">
+            AI-driven system for simplifying and automating registration processes for SAGE.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Streamline registration, reduce administrative overhead.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20E-Sage%20Registration%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20E-Sage%20Registration%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="digitalMallSystem" class="section">
+    <div class="card">
+        <h3 class="card-body">Digital Mall System</h3>
+        <p class="card-body">
+            AI-powered e-commerce platform providing a virtual shopping experience with personalized recommendations.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Enhance online retail experience, increase sales.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Digital%20Mall%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Digital%20Mall%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="dataCleaning" class="section">
+    <div class="card">
+        <h3 class="card-body">Data Cleaning Services</h3>
+        <p class="card-body">
+            AI-driven data cleaning services to ensure data accuracy and reliability.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Improve data quality, enhance decision-making processes.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Data%20Cleaning%20Services."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Data%20Cleaning%20Services%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="biometricEmployeeAttendanceSystem" class="section">
+    <div class="card">
+        <h3 class="card-body">Biometric Employee Attendance System</h3>
+        <p class="card-body">
+            AI-integrated biometric system for accurate employee attendance tracking.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Ensure accurate attendance records, minimize time fraud.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Biometric%20Employee%20Attendance%20System."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Biometric%20Employee%20Attendance%20System%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+
+<section id="cemeterySitesAdministrationSuite" class="section">
+    <div class="card">
+        <h3 class="card-body">Cemetery Sites Administration Suite</h3>
+        <p class="card-body">
+            AI-enhanced system for managing and administering cemetery sites.
+        </p>
+        <p class="card-body">
+            <strong>Objectives:</strong> Improve cemetery management, enhance record-keeping.
+        </p>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20Cemetery%20Sites%20Administration%20Suite."
+            class="btn">More Info</a>
+        <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20downloading%20the%20Cemetery%20Sites%20Administration%20Suite%20source%20code."
+            class="btn">Download Project Source Code</a>
+        <a href="https://chat.whatsapp.com/EJIWivXNhWHFXGw5XO9KYa" class="btn">Join WhatsApp Group</a>
+    </div>
+</section>
+ <section id="AndManyMore" class="section">
+            <h2><i class="bi bi-person-fill"></i> ..... And many more projects</h2>
+            <p>#Coding forever !</p>
+            <ul>
+                <li><strong>WhatsApp:</strong> +263 771445498</li>
+                <li><strong>Email:</strong> <a href="mailto:AnoMadzore@gmail.com">ChisiriNathan@gmail.com</a></li>
+            </ul>
+        </section>
+   <section id="contact" class="section">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <p>For any inquiries, please reach out to us through the following channels:</p>
+            <ul>
+                <li><strong>WhatsApp:</strong> +263 787702386</li>
+                <li><strong>Email:</strong> <a href="mailto:Cohvant@gmail.com">Cohvant@gmail.com</a></li>
+            </ul>
+        </section> 
+    </main>
+    <a href="https://wa.me/263787702386?text=Hi%2C%20I%20am%20interested%20in%20your%20software%20services."
+        class="floating-btn">BOOK OUR SERVICES</a>
+
+    <footer class="footer">
+        <p>&copy; 2025 Cohvant Software Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const asideMenu = document.querySelector('.aside-menu');
+            const content = document.querySelector('.content');
+            asideMenu.classList.toggle('open');
+            content.classList.toggle('open');
+        }
+    </script>
+<script src="https://www.drv.tw/inc/wd.js?s=108zef54ozeloz8imp8f8q"></script></body>
+
+</html>
